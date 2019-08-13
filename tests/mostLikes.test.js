@@ -1,4 +1,4 @@
-const totalLikes = require('../utils/list_helper').totalLikes
+const mostLikes = require('../utils/list_helper').mostLikes
 
 const blogs = [
   {
@@ -48,7 +48,7 @@ const blogs = [
     url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
     likes: 2,
     __v: 0
-  }  
+  }
 ]
 
 const listWithOneBlog = [
@@ -63,19 +63,29 @@ const listWithOneBlog = [
 ]
 
 
-describe('total likes', () => {
+describe('most likes', () => {
   test('no blogs', () => {
-    const result = totalLikes([])
-    expect(result).toBe(0)
+    const result = mostLikes([])
+    expect(result).toEqual({})
   })
 
-  test('when list has only one blog equals the likes of that', () => {
-    const result = totalLikes(listWithOneBlog)
-    expect(result).toBe(5)
+  test('when list has only one blog', () => {
+    const result = mostLikes(listWithOneBlog)
+    expect(result).toEqual(
+      {
+        author: 'Edsger W. Dijkstra',
+        likes: 5
+      }
+    )
   })
 
   test('provided sample blog list', () => {
-    const result = totalLikes(blogs)
-    expect(result).toBe(36)
+    const result = mostLikes(blogs)
+    expect(result).toEqual(
+      {
+        author: 'Edsger W. Dijkstra',
+        likes: 17
+      }
+    )
   })
 })

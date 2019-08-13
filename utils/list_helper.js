@@ -38,7 +38,6 @@ const mostBlogs = (blogs) => {
 
   /* go through each blog and find each author's # of blogs */
   for (let i = 0; i < blogs.length; i++) {
-    // let indexOfAuthor = authorAndNumBlogs.indexOf(blogs[i].author)
     let indexOfAuthor = authorAndNumBlogs.findIndex(item => {
         return item.author == blogs[i].author
       })
@@ -74,10 +73,55 @@ const mostBlogs = (blogs) => {
   return authorWithMostBlogs
 }
 
+/* Returns object with properties 'author' and 'likes'
+ * 'author' is the author with the largest number of blogs 
+ * 'likes' is the number of likes across all blogs the author has
+ */
+const mostLikes = (blogs) => {
+  let authorWithMostLikes = {}
+  const authorAndNumLikes = []
+
+  /* go through each blog and find each author's # of likes */
+  for (let i = 0; i < blogs.length; i++) {
+    let indexOfAuthor = authorAndNumLikes.findIndex(item => {
+        return item.author == blogs[i].author
+      })
+    console.log(blogs[i].author, indexOfAuthor)
+
+    /* if author doesn't exist in author object array, add the author */
+    if (indexOfAuthor == -1) {
+      // console.log('creating new author entry')
+      let newAuthor = {
+        author: blogs[i].author,
+        likes: blogs[i].likes
+      }
+      // console.log('new author:', newAuthor)
+      authorAndNumLikes.push(newAuthor)
+    }
+    /* if author exists in author object array, increment blog count by 1 */
+    else {
+      authorAndNumLikes[indexOfAuthor].likes += blogs[i].likes
+    }
+  }
+
+  // console.log(authorAndNumBlogs)
+
+  /* at the end, return the author object whose blog count is higher */
+  const mostLikesReducer = (mostLikes, author) => {
+    if (author.likes > mostLikes) {
+      mostLikes = author.likes
+      authorWithMostLikes = author
+    }
+    return mostLikes
+  }
+  authorAndNumLikes.reduce(mostLikesReducer, -1)
+  return authorWithMostLikes
+}
 
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
   mostBlogs,
+  mostLikes,
 }
