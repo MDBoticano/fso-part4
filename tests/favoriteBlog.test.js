@@ -62,16 +62,13 @@ const listWithOneBlog = [
   }
 ]
 
-
 describe('favorite blog', () => {
   test('no blogs', () => {
-    const result = favoriteBlog([])
-    expect(result).toEqual({})
+    expect(favoriteBlog([])).toEqual({})
   })
 
   test('when list has only one blog', () => {
-    const result = favoriteBlog(listWithOneBlog)
-    expect(result).toEqual(
+    expect(favoriteBlog(listWithOneBlog)).toEqual(
       {
         _id: '5a422aa71b54a676234d17f8',
         title: 'Go To Statement Considered Harmful',
@@ -84,8 +81,7 @@ describe('favorite blog', () => {
   })
 
   test('provided sample blog list', () => {
-    const result = favoriteBlog(blogs)
-    expect(result).toEqual(
+    expect(favoriteBlog(blogs)).toEqual(
       {
         _id: "5a422b3a1b54a676234d17f9",
         title: "Canonical string reduction",

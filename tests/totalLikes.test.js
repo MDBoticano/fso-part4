@@ -62,20 +62,16 @@ const listWithOneBlog = [
   }
 ]
 
-
 describe('total likes', () => {
   test('no blogs', () => {
-    const result = totalLikes([])
-    expect(result).toBe(0)
+    expect(totalLikes([])).toBe(0)
   })
 
   test('when list has only one blog equals the likes of that', () => {
-    const result = totalLikes(listWithOneBlog)
-    expect(result).toBe(5)
+    expect(totalLikes(listWithOneBlog)).toBe(5)
   })
 
   test('provided sample blog list', () => {
-    const result = totalLikes(blogs)
-    expect(result).toBe(36)
+    expect(totalLikes(blogs)).toBe(36)
   })
 })

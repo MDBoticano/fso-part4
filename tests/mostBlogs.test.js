@@ -62,16 +62,13 @@ const listWithOneBlog = [
   }
 ]
 
-
 describe('most blogs', () => {
   test('no blogs', () => {
-    const result = mostBlogs([])
-    expect(result).toEqual({})
+    expect(mostBlogs([])).toEqual({})
   })
 
   test('when list has only one blog', () => {
-    const result = mostBlogs(listWithOneBlog)
-    expect(result).toEqual(
+    expect(mostBlogs(listWithOneBlog)).toEqual(
       {
         author: 'Edsger W. Dijkstra',
         blogs: 1
@@ -80,8 +77,7 @@ describe('most blogs', () => {
   })
 
   test('provided sample blog list', () => {
-    const result = mostBlogs(blogs)
-    expect(result).toEqual(
+    expect(mostBlogs(blogs)).toEqual(
       {
         author: "Robert C. Martin",
         blogs: 3
