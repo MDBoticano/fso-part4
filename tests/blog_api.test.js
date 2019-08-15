@@ -16,6 +16,9 @@ beforeEach(async () => {
   })
 })
 
+/* --------------------------------- Tests ---------------------------------- */
+
+/* 4.8: Data is returned as JSON */
 test('blogs are returned as json', async () => {
   await api
     .get('/api/blogs')
@@ -23,12 +26,27 @@ test('blogs are returned as json', async () => {
     .expect('Content-Type', /application\/json/)
 })
 
+/* 4.8: GET request to /api/blogs returns correct number of blog posts */
 test('all blogs are returned', async () => {
   const response = await api.get('/api/blogs')
 
   expect (response.body.length).toBe(helper.sampleBlogs.length)
 })
 
+/* 4.9: The unique identifier property is named id */
+test('identifier property is named id', async () => {
+  /* Get all blogs */
+  const response = await api.get('/api/blogs')
+  
+  /* check first one has id property */
+  const idProp = response.body[0].id 
+  expect(idProp).toBeDefined()
+})
+
+
+
+/* -------------------- After all tests, close connection ------------------- */
 afterAll(() => {
   mongoose.connection.close()
 })
+
