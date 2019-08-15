@@ -9,7 +9,7 @@
     "deploy": "git push heroku master",
     "logs:prod": "heroku logs --tail",
     "lint": "eslint .",
-    "test": "cross-env NODE_ENV=test jest --verbose"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
   },
   "author": "Marlo Boticano",
   "license": "ISC",
