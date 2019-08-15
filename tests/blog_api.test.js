@@ -38,12 +38,11 @@ test('identifier property is named id', async () => {
   /* Get all blogs */
   const response = await api.get('/api/blogs')
   
-  /* check first one has id property */
-  const idProp = response.body[0].id 
-  expect(idProp).toBeDefined()
+  /* Check each blog has an 'id' property */
+  response.body.forEach(blog => {
+    expect(blog.id).toBeDefined()
+  })
 })
-
-
 
 /* -------------------- After all tests, close connection ------------------- */
 afterAll(() => {
