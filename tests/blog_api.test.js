@@ -62,18 +62,12 @@ test('a valid blog can be added', async () => {
   expect(blogsAfterPOST.length).toBe(helper.sampleBlogs.length + 1)
 
   /* Content check: POST request should add object matching newBlog */
-  const blogTitle = blogsAfterPOST.map(blog => blog.title)
-  expect(blogTitle).toContain(newBlog.title)
+  const lastBlogIndex = blogsAfterPOST.length - 1
+  const lastBlog = blogsAfterPOST[lastBlogIndex]
 
-  const blogAuthor = blogsAfterPOST.map(blog => blog.author)
-  expect(blogAuthor).toContain(newBlog.author)
-
-  const blogURL = blogsAfterPOST.map(blog => blog.url)
-  expect(blogURL).toContain(newBlog.url)
-
-  const blogLikes = blogsAfterPOST.map(blog => blog.likes)
-  expect(blogLikes).toContain(newBlog.likes)
-
+  expect(lastBlog.title).toBe(newBlog.title)
+  expect(lastBlog.author).toBe(newBlog.author)
+  expect(lastBlog.url).toBe(newBlog.url)
 })
 
 /* -------------------- After all tests, close connection ------------------- */
