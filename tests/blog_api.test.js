@@ -56,7 +56,7 @@ describe('get initial blogs', () => {
 })
 
 describe('get specific blogs', () => {
-  /* 4.13: a specific blog can be viewed */
+  /* GET a specific blog that is valid and can be viewed */
   test('a specific blog can be viewed', async () => {
     const blogsAtStart = await helper.blogsInDb()
     const blogToView = blogsAtStart[0]
@@ -69,9 +69,14 @@ describe('get specific blogs', () => {
     expect(resultBlog.body).toEqual(blogToView)
   })
 
-  /* */
-
-
+  /* GET a non-existent blog */
+  test('a blog with an invalid id returns a 404', async () => {
+    const validButNonExistentId = await helper.nonExistentId()
+    
+    await api
+      .get(`/api/blogs/${validButNonExistentId}`)
+      .expect(404)
+  })
 })
 
 describe('blog creation', () => {
@@ -142,7 +147,7 @@ describe('blog creation', () => {
 })
 
 describe('blog deletion', () => {
-  /* 4.13: a specific blog can be deleted */
+  /* DELETE a specific blog that is valid can be deleted */
   test('a blog can be deleted', async () => {
     const blogsAtStart = await helper.blogsInDb()
     const blogToDelete = blogsAtStart[0]
