@@ -101,6 +101,9 @@ test('no title/url POST request returns status 400', async () => {
     .post('/api/blogs')
     .send(newBlog)
     .expect(400)
+
+  const blogsAfterPOST = await helper.blogsInDb()
+  expect(blogsAfterPOST.length).toBe(helper.sampleBlogs.length)
 })
 
 
