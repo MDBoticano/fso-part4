@@ -6,6 +6,10 @@ const api = supertest(app)
 
 const Blog = require('../models/blog')
 
+
+/* for findByIdAndUpdate */
+mongoose.set('useFindAndModify', false);
+
 beforeEach(async () => {
   await Blog.deleteMany({})
 
@@ -141,6 +145,30 @@ test('a blog can be deleted', async () => {
 
   const titles = blogsAtEnd.map(blog => blog.title)
   expect(titles).not.toContain(blogToDelete.title)
+})
+
+/* 4.14: a specific blog's likes can be updated */
+test('a valid blog can be updated', async () => {
+  const idOfBlogToUpdate = '5a422bc61b54a676234d17fc';
+
+  const updatedBlog = {
+    title: "Type wars",
+    author: "Robert C. Martin",
+    url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
+    likes: 222
+  }
+
+  await api
+    .put(`/api/blogs/${idOfBlogToUpdate}`)
+    .send(updatedBlog)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  /* Length check: PUT request should not increase number of blogs */
+  const blogsAfterPOST = await helper.blogsInDb()
+  expect(blogsAfterPOST.length).toBe(helper.sampleBlogs.length)
+
+  /* Content check: PUT request should have object matching updatedBlog */
 })
 
 

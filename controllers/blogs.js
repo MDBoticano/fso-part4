@@ -40,6 +40,32 @@ blogsRouter.post('/', async (request, response, next) => {
   }
 })
 
+/* PUT: update an existing entry -- NON ASYNC*/
+blogsRouter.put('/:id', (request, response, next) => {
+// blogsRouter.put('/:id', async (request, response, next) => {
+  const body = request.body
+
+  const blog = {
+    title: body.title,
+    author: body.author,
+    likes: body.likes
+  }
+
+  Blog.findByIdAndUpdate(request.params.id, blog, { new: true} )
+    .then(updatedBlog => {
+      response.json(updatedBlog.toJSON())
+    })
+    .catch(error => next(error))
+
+  // try {
+  //   const updatedBlog = await blog.update(blog)
+  //   response.json(updatedBlog.toJSON())
+  // } catch(exception) {
+  //   next(exception)
+  // }
+  
+})
+
 /* DELETE: one blog using id -- ASYNC */
 blogsRouter.delete('/:id', async (request, response, next) => {
   try {

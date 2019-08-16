@@ -1,9 +1,9 @@
-post http://localhost:3001/api/blogs 
+put http://localhost:3001/api/blogs/5d5604df658de14b94d372d3
 Content-Type: application/json
 
 {
   "title": "My Thursday",
   "author": "Mark",
   "url": "www.marloboticano.com",
-  "likes": 100
+  "likes": 222
 }
