@@ -92,6 +92,17 @@ test('no likes POST request defaults to 0 likes', async () => {
 })
 
 /* 4.12: If title and url props are missing, respond with 400 bad request */
+test('no title/url POST request returns status 400', async () => {
+  const newBlog = {
+    author: "Franz Test",
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+})
+
 
 /* -------------------- After all tests, close connection ------------------- */
 afterAll(() => {
