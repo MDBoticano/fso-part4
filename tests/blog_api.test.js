@@ -31,6 +31,14 @@ test('all blogs are returned', async () => {
   expect (response.body.length).toBe(helper.sampleBlogs.length)
 })
 
+/* GET request to /api/blogs/:id returns correct blog */
+test('a specific blog is within returned blogs', async () => {
+  const response = await api.get('/api/blogs')
+
+  const contents = response.body.map(blog => blog.title)
+  expect(contents).toContain('Type wars')
+})
+
 /* 4.9: The unique identifier property is named id */
 test('identifier property is named id', async () => {
   const response = await api.get('/api/blogs')
