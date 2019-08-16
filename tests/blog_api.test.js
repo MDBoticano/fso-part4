@@ -169,6 +169,13 @@ test('a valid blog can be updated', async () => {
   expect(blogsAfterPOST.length).toBe(helper.sampleBlogs.length)
 
   /* Content check: PUT request should have object matching updatedBlog */
+  /* get blog by id */
+  const updatedBlogById = blogsAfterPOST.find(blog => {
+    return blog.id === idOfBlogToUpdate
+  })
+
+  /* check blog's like counts to match updatedBlog.likes */
+  expect(updatedBlogById.likes).toBe(updatedBlog.likes)
 })
 
 
