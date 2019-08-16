@@ -70,12 +70,21 @@ describe('get specific blogs', () => {
   })
 
   /* GET a non-existent blog */
-  test('a blog with an invalid id returns a 404', async () => {
+  test('a blog with an invalid id returns status 404', async () => {
     const validButNonExistentId = await helper.nonExistentId()
     
     await api
       .get(`/api/blogs/${validButNonExistentId}`)
       .expect(404)
+  })
+
+  /* GET an invalid id blog */
+  test('a blog with an invalid id returns status 400', async () => {
+    const invalidId = '5a3d5da59070081a82a3445'
+
+    await api
+      .get(`/api/blogs/${invalidId}`)
+      .expect(400)
   })
 })
 
