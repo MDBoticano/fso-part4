@@ -8,7 +8,6 @@ const Blog = require('../models/blog')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
-  console.log('cleaned MongoDB')
 
   const blogObjects = helper.sampleBlogs.map(blog => new Blog(blog))
   const promiseArray = blogObjects.map(blog => blog.save())
@@ -91,6 +90,8 @@ test('no likes POST request defaults to 0 likes', async () => {
 
   expect(lastBlog.likes).toBe(0)
 })
+
+/* 4.12: If title and url props are missing, respond with 400 bad request */
 
 /* -------------------- After all tests, close connection ------------------- */
 afterAll(() => {
