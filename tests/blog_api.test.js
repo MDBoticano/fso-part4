@@ -70,6 +70,28 @@ test('a valid blog can be added', async () => {
   expect(lastBlog.url).toBe(newBlog.url)
 })
 
+/* 4.11: If likes is missing from POST request, likes defaults to 0 */
+test('no likes POST request defaults to 0 likes', async () => {
+  const newBlog = {
+    title: "Test POST blog",
+    author: "Franz Test",
+    url: "google.com"
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  /* Content check: POST request should add object matching newBlog */
+  const blogsAfterPOST = await helper.blogsInDb()
+  const lastBlogIndex = blogsAfterPOST.length - 1
+  const lastBlog = blogsAfterPOST[lastBlogIndex]
+
+  expect(lastBlog.likes).toBe(0)
+})
+
 /* -------------------- After all tests, close connection ------------------- */
 afterAll(() => {
   mongoose.connection.close()
