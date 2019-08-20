@@ -1,6 +1,6 @@
 post http://localhost:3001/api/blogs 
 Content-Type: application/json
-Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkphbiIsImlkIjoiNWQ1YjMxNjNlYmJlYzYwN2E4ODBjNzllIiwiaWF0IjoxNTY2MzQwNTMyfQ.PgWDIIoeMFapzEpKDvMQdDYlEe3gFUCCSTA1ZjezpB0
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkphbiIsImlkIjoiNWQ1YjMxNjNlYmJlYzYwN2E4ODBjNzllIiwiaWF0IjoxNTY2MzQwNTMyfQ.PgWDIIoeMFapzEpKDvMQdDYlEe3gFUCCSTA1ZjezpB0
 
 {
   "title": "Jan's blog & token",
