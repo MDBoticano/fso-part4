@@ -1,11 +1,11 @@
 post http://localhost:3001/api/blogs 
 Content-Type: application/json
-Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkphbiIsImlkIjoiNWQ1YjMxNjNlYmJlYzYwN2E4ODBjNzllIiwiaWF0IjoxNTY2MzM5NjExfQ.Dgpr1RUaJXBQm95Nf0aD1OM63GUVl3LcAp7XnJLGS9A
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkphbiIsImlkIjoiNWQ1YjMxNjNlYmJlYzYwN2E4ODBjNzllIiwiaWF0IjoxNTY2MzQwNTMyfQ.PgWDIIoeMFapzEpKDvMQdDYlEe3gFUCCSTA1ZjezpB0
 
 {
-  "title": "Jan's authorized Blog",
-  "author": "Jane the Man",
+  "title": "Jan's blog & token",
+  "author": "Jan",
   "url": "www.google.com",
-  "likes": 3,
+  "likes": 14,
   "userId": "5d5b3163ebbec607a880c79e"
 }

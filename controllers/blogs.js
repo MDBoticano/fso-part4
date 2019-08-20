@@ -44,11 +44,19 @@ blogsRouter.post('/', async (request, response, next) => {
 
   try {
     const decodedToken = jwt.verify(token, process.env.SECRET)
+    // console.log('decoded token', decodedToken.id)
     if (!token || !decodedToken.id) {
       return response.status(401).json({ error: 'token missing or invalid' })
     }
   
     const user = await User.findById(body.userId)
+
+    // validate who the token belongs to, not just that its valid
+    // console.log('user id', user._id.toString())
+    if(decodedToken.id.toString() !== user._id.toString()) {
+      // console.log('token for wrong user')
+      return response.status(401).json({ error: 'token doesn\'t match user' })
+    }
 
     const blog = new Blog({
       title: body.title,
