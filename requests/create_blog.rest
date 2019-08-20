@@ -2,8 +2,9 @@ post http://localhost:3001/api/blogs
 Content-Type: application/json
 
 {
-  "title": "My Thursday",
+  "title": "My Tuesday Morning",
   "author": "Mark",
   "url": "www.marloboticano.com",
-  "likes": 100
+  "likes": 8,
+  "userId": "5d5b3163ebbec607a880c79e"
 }
