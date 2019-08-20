@@ -10,8 +10,8 @@ const mongoose = require('mongoose')
 const logger = require('./utils/logger')
 
 // Enable depending on Mongoose deprecation warnings
-mongoose.set('useFindAndModify', false)
-mongoose.set('useCreateIndex', true)
+// mongoose.set('useFindAndModify', false)
+// mongoose.set('useCreateIndex', true)
 
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
